@@ -5,6 +5,7 @@
 package com.gdit.accounts;
 
 import com.gdit.accounts.model.Person;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.UUID;
 
+@Component
 @Path("/accounts")
 @Transactional
 public class AccountsService {
@@ -51,9 +53,11 @@ public class AccountsService {
     @PUT
     @Path("/person")
     @Consumes(MediaType.APPLICATION_JSON)
-    public UUID put(Person p) {
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public String put(Person p) {
         em.persist(p);
-        return p.getId();
+        return p.getId().toString();
     }
 
     @POST
