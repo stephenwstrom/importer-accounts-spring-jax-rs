@@ -1,1 +1,1 @@
-# importer-accounts-spring
+# importer-accounts-spring-jax-rs
